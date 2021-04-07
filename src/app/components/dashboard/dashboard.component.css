@@ -1,0 +1,14 @@
+.nav-bl {
+    background-color: black;
+}
+
+.car-s {
+    width:50%;
+    margin:0 auto;
+}
+
+.carousel-item img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}

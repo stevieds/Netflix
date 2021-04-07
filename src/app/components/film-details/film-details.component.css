@@ -1,0 +1,25 @@
+
+.mainDetails {
+    margin: 25px;
+}
+
+img {
+    height:500px;
+}
+
+.details {
+    margin:0 auto;
+    margin-top: 25px;
+    width:700px;
+    
+}
+
+.plot {width: 700px;
+text-align: justify;
+margin: 0 auto;}
+
+.title {
+    color:#dc3545;
+    text-align: center;
+    border-top:none;
+}

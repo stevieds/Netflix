@@ -1,0 +1,52 @@
+
+
+
+    
+
+
+<div  *ngIf="film" class="d-flex flex-row justify-content-center details">
+
+
+    <div><img src={{film.cover_url}}></div>
+
+
+    <table class="table align-self-center">
+        <tbody>
+            <tr>
+                <td class="title" colspan="2"><h3 *ngIf="film">{{film.title}} </h3></td>
+            </tr>
+          <tr>
+            <th scope="row">Anno</th>
+            <td>{{film.release_year}}</td>
+          </tr>
+
+
+          <tr>
+            <th scope="row">Durata</th>
+            <td>{{film.duration}}</td>
+
+          </tr>
+          <tr>
+            <th scope="row">Genere</th>
+            <td><span *ngFor="let genre of film.genres">{{genre.name}}<br></span></td>
+
+          </tr>
+          <tr>
+            <th scope="row">Interpreti</th>
+            <td><span *ngFor="let actor of film.actors">{{actor.firstname}} {{actor.lastname}}<br></span></td>
+
+          </tr>
+        </tbody>
+      </table>
+
+
+</div>
+
+
+    <div *ngIf="film" class="plot">
+        <h4>Trama</h4>
+        {{film.plot}}
+    </div>
+
+
+

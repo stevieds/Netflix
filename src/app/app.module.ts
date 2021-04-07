@@ -1,16 +1,48 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FilmListComponent } from './components/film-list/film-list.component';
+
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ActorListComponent } from './components/actor-list/actor-list.component';
+import { GenreListComponent } from './components/genre-list/genre-list.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FilmDetailsComponent } from './components/film-details/film-details.component';
+import { ActorDetailsComponent } from './components/actor-details/actor-details.component';
+import { GenreDetailsComponent } from './components/genre-details/genre-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilmListComponent,
+    ActorListComponent,
+    GenreListComponent,
+    DashboardComponent,
+    FilmDetailsComponent,
+    ActorDetailsComponent,
+    GenreDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BsDropdownModule.forRoot(),
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    AccordionModule.forRoot(),
+    ButtonsModule.forRoot(),
+    CollapseModule.forRoot(),
+    CarouselModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
