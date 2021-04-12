@@ -1,3 +1,4 @@
+  
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -34,20 +35,14 @@ export class GenreDetailsComponent implements OnInit {
 
   getFilms():void{
     let film;
-    let id = +(this.route.snapshot.paramMap.get('id')?? 0);
+    let id = +(this.route.snapshot.paramMap.get('id') || 0);
     id = isNaN(id) ? 0 : id;
 
-    // Filtro il film con il metodo find
+
     this.filmService.getFilms().subscribe(films => {
-      for (let film of films) {
-        for (let genre of film.genres) {
-          for (let g of this.genres) {
-          if (genre.name === g.name) {
-            this.films.push(film);
-          }
-        }
-        }
-      }
+      console.log(films[0].genres.map(genre => genre.id));
+      this.films=films.filter(film => film.genres.map(genre => ''+genre.id).indexOf(''+id)>-1);
+      console.log(this.films);
     });
   };
 

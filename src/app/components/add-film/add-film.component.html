@@ -1,0 +1,55 @@
+<h3 class="title"> Aggiungi un film </h3>
+
+<div class="cont">
+    <form>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Titolo</label>
+                <input type="text" class="form-control" [(ngModel)]="title">
+              </div>
+    
+              <div class="form-group col-md-4">
+                    <label>Genere</label>
+                    <select class="form-control" [(ngModel)]="genres">
+                      <option selected disabled></option>
+                    <option *ngFor="let genre of allGenres" value={{genre.id}}>{{genre.name}}</option>
+                    </select>
+                  </div>
+    
+    
+    
+            </div>
+              <div class="form-group">
+                <label>Descrizione</label>
+                <textarea  class="form-control" [(ngModel)]="description"></textarea>
+              </div>
+              <div class="form-group">
+                    <label>Trama</label>
+                    <textarea class="form-control" [(ngModel)]="plot"></textarea>
+            </div>
+    
+            <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label>Cover</label>
+                      <input type="text" class="form-control" [(ngModel)]="cover_url">
+                    </div>
+                    <div class="form-group col-md-4">
+                      <label>Durata</label>
+                      <input type="number" class="form-control" [(ngModel)]="duration">
+                    </div>
+                    <div class="form-group col-md-2">
+                      <label>Anno</label>
+                      <input type="number" class="form-control" [(ngModel)]="release_year">
+                    </div>
+                  </div>
+    
+    
+    
+    
+    
+    
+    
+            <button type="submit" class="btn btn-primary">Invia</button>
+          </form>
+    
+        </div>

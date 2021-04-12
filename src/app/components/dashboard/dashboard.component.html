@@ -18,7 +18,17 @@
             <a class="nav-link" [routerLink]="['genres']">Generi</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-3">Login</a>
+            <a class="nav-link" >Aggiungi</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Aggiungi
+            </a>
+            <div class="dropdown-menu nav-bl navbar-dark" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item navbar-dark" [routerLink]="['addf']">Film</a>
+              <a class="dropdown-item"  [routerLink]="['addA']">Attore</a>
+              <a class="dropdown-item"  [routerLink]="['addG']">Genere</a>
+            </div>
           </li>
         </ul>
       </div>

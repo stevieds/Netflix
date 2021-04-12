@@ -1,20 +1,25 @@
-
-
 <div class="details">
 
-<table *ngIf="actor" class="table align-self-center">
-    <tbody>
+  <table *ngIf="actor" class="table align-self-center">
+      <tbody>
+          <tr>
+              <td class="title" colspan="2"><h3>{{actor.firstname}} {{actor.lastname}}</h3></td>
+          </tr>
         <tr>
-            <td class="title" colspan="2"><h3>{{actor.firstname}} {{actor.lastname}}</h3></td>
+          <th scope="row">Data di nascita</th>
+          <td>{{actor.birthdate}}</td>
         </tr>
-      <tr>
-        <th scope="row">Data di nascita</th>
-        <td>{{actor.birthdate}}</td>
-      </tr>
-
-
-     
-    </tbody>
-  </table>
-
-</div>
+      </tbody>
+    </table>
+    <div class="container">
+      <h5>Filmografia</h5>
+        <div class="row row-cols-1">
+          <div *ngFor="let film of films" class="col listC">
+            <a routerLink="/filmd/{{film.id}}">
+            {{film.title}}</a>
+          </div>
+          </div>
+        </div>
+      
+  
+  </div>

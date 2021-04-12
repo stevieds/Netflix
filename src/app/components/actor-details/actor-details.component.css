@@ -1,4 +1,5 @@
 
+
 .mainDetails {
     margin: 25px;
 }
@@ -23,4 +24,9 @@ margin: 0 auto;}
 
 th {
     text-align: right;
+}
+
+.container {
+    text-align:center;
+    padding-bottom: 25px;
 }

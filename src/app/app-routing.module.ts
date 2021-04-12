@@ -6,6 +6,9 @@ import { GenreListComponent } from './components/genre-list/genre-list.component
 import { FilmDetailsComponent } from './components/film-details/film-details.component';
 import { ActorDetailsComponent } from './components/actor-details/actor-details.component';
 import { GenreDetailsComponent } from './components/genre-details/genre-details.component';
+import { AddFilmComponent } from './components/add-film/add-film.component';
+import { AddGenreComponent } from './components/add-genre/add-genre.component';
+import { AddActorComponent } from './components/add-actor/add-actor.component';
 
 const routes: Routes = [
   { path: 'films', component: FilmListComponent },
@@ -14,6 +17,9 @@ const routes: Routes = [
   { path: 'filmd/:id', component: FilmDetailsComponent },
   { path: 'actord/:id', component: ActorDetailsComponent },
   { path: 'genred/:id', component: GenreDetailsComponent },
+  { path: 'addf', component: AddFilmComponent },
+  { path: 'addA', component: AddActorComponent },
+  { path: 'addG', component: AddGenreComponent },
 ];
 
 @NgModule({
