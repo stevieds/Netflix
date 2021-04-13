@@ -1,28 +1,9 @@
 <div class="container">
-    <div class="row row-cols-3">
+    <div class="row row-cols-5">
       <div *ngFor="let film of films" class="col">
         <a routerLink="/filmd/{{film.id}}">
         <img src="{{film.cover_url}}" class="thumb" alt="{{film.title}}"></a>
           <h6>{{film.title}}</h6>
-          {{film.release_year}} - {{film.duration}}<br>
-          <ul class="list-inline">
-            <li class="list-inline-item" *ngFor="let actor of film.actors">{{actor.firstname}} {{actor.lastname}}</li>
-          </ul>
-          <p>
-          <span class="desc">{{film.description}}</span>
-        </p>
-
-
-            <ul class="list-inline">
-                <li class="list-inline-item" *ngFor="let g of film.genres">{{g.name}}</li>
-              </ul>
-
-
-
-          
-          
-          
-          
 
          </div>
 

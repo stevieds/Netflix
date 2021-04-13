@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
@@ -19,11 +20,12 @@ export class LoginComponent implements OnInit {
 	rememberMe: boolean = false;
 
 	constructor(
-		public userService: UserService
+		public userService: UserService,
+		private router: Router
 	) { }
 
 	ngOnInit(): void {
-		//this.userService.getLoggedUser();
+		this.userService.getLoggedUser();
 	}
 
 
@@ -31,6 +33,7 @@ export class LoginComponent implements OnInit {
 	login() {
     this.userService.login(this.username, this.password, this.rememberMe).subscribe(response => {
       if (response !== null) {
+		this.router.navigate(['/dashboard']);
         
         // OK
       } else {
@@ -41,9 +44,11 @@ export class LoginComponent implements OnInit {
 
 	}
 
-/*	logout() {
+
+
+	logout() {
 		this.userService.logout();
-		this.hideLogin = true;
+		//this.hideLogin = true;
   }
-  */
+
 }

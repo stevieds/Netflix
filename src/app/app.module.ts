@@ -24,6 +24,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AddFilmComponent } from './components/add-film/add-film.component';
 import { AddGenreComponent } from './components/add-genre/add-genre.component';
 import { AddActorComponent } from './components/add-actor/add-actor.component';
+import {NgxLocalStorageModule} from 'ngx-localstorage';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { AddActorComponent } from './components/add-actor/add-actor.component';
     LoginComponent,
     AddFilmComponent,
     AddGenreComponent,
-    AddActorComponent
+    AddActorComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { AddActorComponent } from './components/add-actor/add-actor.component';
     AccordionModule.forRoot(),
     ButtonsModule.forRoot(),
     CollapseModule.forRoot(),
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    NgxLocalStorageModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

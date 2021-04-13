@@ -1,4 +1,4 @@
-<div #form class="d-flex justify-content-center align-items-center black">
+<div #form class="d-flex flex-column justify-content-center align-items-center black">
     <div class="">
 
     <input type="text" [(ngModel)]="username" class="form-control" placeholder="Nome utente">
@@ -12,4 +12,5 @@
         <label class="form-check-label" for="exampleCheck1">Ricordami</label>
     </div>
     <button class="btn btn-danger" (click)="login()">Login</button>
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
 </div>

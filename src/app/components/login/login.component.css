@@ -12,3 +12,7 @@ label, button {
 label, button {
     color:white;
 }
+
+input[type="text"], input[type="password"], button{
+    margin: 15px;
+}

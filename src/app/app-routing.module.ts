@@ -9,6 +9,8 @@ import { GenreDetailsComponent } from './components/genre-details/genre-details.
 import { AddFilmComponent } from './components/add-film/add-film.component';
 import { AddGenreComponent } from './components/add-genre/add-genre.component';
 import { AddActorComponent } from './components/add-actor/add-actor.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'films', component: FilmListComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: 'addf', component: AddFilmComponent },
   { path: 'addA', component: AddActorComponent },
   { path: 'addG', component: AddGenreComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
 ];
 
 @NgModule({

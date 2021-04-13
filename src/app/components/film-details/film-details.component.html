@@ -1,52 +1,34 @@
+<div>
+<div *ngIf="film" class="d-flex flex-row justify-content-center details">
 
 
 
-    
 
 
-<div  *ngIf="film" class="d-flex flex-row justify-content-center details">
+
+  <div *ngIf="film" class="mainDetails align-self-center" >
+    <h1>{{film.title}} </h1>
+  <span class="spanDetails">{{film.release_year}} {{film.duration}} <span class="badge badge-secondary">{{film.vote}}</span></span>
+      <span class="spanDetails"><span class="titleD">Starring: </span> <span *ngFor="let actor of film.actors">{{actor.firstname}} {{actor.lastname}} </span> </span>
+      <span class="spanDetails"><span class="titleD">Genere: </span> <span *ngFor="let genre of film.genres">{{genre.name}} </span></span>
+
+      <div *ngIf="film" class="plot ">
+          <h4>Trama</h4>
+          {{film.plot}}
+        </div>
 
 
-    <div><img src={{film.cover_url}}></div>
 
 
-    <table class="table align-self-center">
-        <tbody>
-            <tr>
-                <td class="title" colspan="2"><h3 *ngIf="film">{{film.title}} </h3></td>
-            </tr>
-          <tr>
-            <th scope="row">Anno</th>
-            <td>{{film.release_year}}</td>
-          </tr>
 
 
-          <tr>
-            <th scope="row">Durata</th>
-            <td>{{film.duration}}</td>
-
-          </tr>
-          <tr>
-            <th scope="row">Genere</th>
-            <td><span *ngFor="let genre of film.genres">{{genre.name}}<br></span></td>
-
-          </tr>
-          <tr>
-            <th scope="row">Interpreti</th>
-            <td><span *ngFor="let actor of film.actors">{{actor.firstname}} {{actor.lastname}}<br></span></td>
-
-          </tr>
-        </tbody>
-      </table>
 
 
+  </div>
+  <div class="bgFilm align-self-stretch" style="background-image:linear-gradient(to right, black, rgba(0, 0, 0, 0)), url('{{film.cover_url}}');"> </div>
 </div>
 
 
-    <div *ngIf="film" class="plot">
-        <h4>Trama</h4>
-        {{film.plot}}
-    </div>
 
 
-
+</div>

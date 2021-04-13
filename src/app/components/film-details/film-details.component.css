@@ -1,25 +1,52 @@
 
+.bgFilm {
+    width: 60%;
+    min-height: 852px;
+    background-repeat:no-repeat;
+}
 .mainDetails {
-    margin: 25px;
+    background-image:linear-gradient(to right, black, rgba(0, 0, 0, 0));
+    color: white;
+    width: 40%;
+    min-height: 200px;
+    padding-top: 50px;
+    margin-right: 5px;
 }
 
-img {
-    height:500px;
+.plot {
+    background-image:linear-gradient(to right, black, rgba(0, 0, 0, 0));
+    color: white;
+    min-height: 200px;
+    padding-top: 50px;
+    text-align: justify;
+    margin-right: 25px;
 }
+
 
 .details {
+    background-repeat: no-repeat;
+    background-size: cover;
     margin:0 auto;
     margin-top: 25px;
-    width:700px;
-    
+    margin-left: 35px;
 }
 
-.plot {width: 700px;
-text-align: justify;
-margin: 0 auto;}
+
 
 .title {
     color:#dc3545;
     text-align: center;
     border-top:none;
+}
+
+.spanDetails {
+    display: block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.titleD {
+    color: rgb(173, 173, 173);
+    font-size:0.8em;
+    font-weight: bold;
 }
