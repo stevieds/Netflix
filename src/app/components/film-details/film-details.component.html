@@ -11,9 +11,9 @@
       <a routerLink="/edit-film/{{film.id}}">
         <fa-icon [icon]="faEdit"></fa-icon>
     </a>
-    <fa-icon [icon]="heart" (click)="addToFavourites()"></fa-icon>
+    <fa-icon [icon]='this.favourite? this.fullHeart:emptyHeart' (click)="toggleFav()"></fa-icon>
 
-
+    
 
 
     </h1>

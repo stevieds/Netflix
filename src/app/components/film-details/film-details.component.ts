@@ -5,7 +5,7 @@ import { FilmService } from 'src/app/services/film.service';
 import { Film } from '../../models/film';
 import { User } from '../../models/user';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
-//import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faSHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { UserService } from 'src/app/services/user.service';
 import { MessagesService } from 'src/app/services/messages.service';
@@ -19,10 +19,12 @@ import { MessagesService } from 'src/app/services/messages.service';
 })
 export class FilmDetailsComponent implements OnInit {
   faEdit = faEdit;
-  heart = faHeart;
+  emptyHeart = faHeart;
+  fullHeart = faSHeart;
   tags?: string[]  | undefined;
-  film?: Film | undefined;
+  film?: Film;
   favourite: boolean = false;
+  favourites: number[] = [];
   @Output() fav = new EventEmitter<number>();
 
   constructor(
@@ -38,14 +40,23 @@ export class FilmDetailsComponent implements OnInit {
     this.getFilm();
   }
 
+
+
   getFilm(): void {
     // Prendo il valore corrispondente al segnaposto id dall'url
     let id = +(this.route.snapshot.paramMap.get('id')?? 0);
     id = isNaN(id) ? 0 : id;
 
+    this.favourites = this.userService.getFav();
+
     // Filtro il film con il metodo find
     this.filmService.getFilms().subscribe(films => {
       this.film = films.find(x => x.id == id);
+
+      if (this.favourites.find(x => x==this.film!.id) == this.film!.id) {
+        this.favourite = true;
+      };
+
       if (this.film!.tags) {
       this.tags = this.film!.tags.split("; ")
     }
@@ -59,8 +70,11 @@ export class FilmDetailsComponent implements OnInit {
 
 
 
-addToFavourites() {
-  this.userService.editFavFilms(this.film!.id).subscribe(response => {
+
+
+toggleFav() {
+  this.favourite = !this.favourite;
+  this.userService.editFavFilms(this.film!.id, this.favourite).subscribe(response => {
     if (response !== null) {
       console.log(response);
   
@@ -69,7 +83,11 @@ addToFavourites() {
   
   
   });
+  
 
 }
+
+
+
 
 }

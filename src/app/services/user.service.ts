@@ -15,7 +15,7 @@ export class UserService {
   private loginUrl = 'https://netflix.cristiancarrino.com/user/login.php';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' },)};
-  loggedUser: User | null = null;
+  loggedUser?: User | null;
   loggedIn : boolean = false;
   loggedId : number | undefined;
 
@@ -26,20 +26,18 @@ export class UserService {
  
     login (username: string, password: string, rememberMe:boolean): Observable<User | null> {
       return this.http.post<User | null>(this.loginUrl, {username: username, password: password, rememberMe: rememberMe}, this.httpOptions).pipe(tap(response => {
-        
-        
-this.loggedUser = response;
+                
+        this.loggedUser = response;
+
         if (response!.favorite_films) {
           this.loggedUser!.favorite_films=response!.favorite_films.toString().split(",").map(x=> parseInt(x)).filter(x => Number.isInteger(x));
-        } 
+        } else {
+            this.loggedUser!.favorite_films = [];
+        }
         
-console.log('login', response);
+      console.log('login', response);
 
-
-
-
-        
-        this.loggedIn = true;
+      this.loggedIn = true;
         if (rememberMe) {
         this.localStorage.set('loggedUser', response);
       }
@@ -60,7 +58,7 @@ console.log('login', response);
     getLoggedUser(): User | null {
       this.loggedUser = this.localStorage.get('loggedUser');
       
-      return this.loggedUser;
+      return this.loggedUser!;
     }
 
     editUser (user: User):Observable<User | null> {
@@ -86,20 +84,13 @@ console.log('login', response);
    // login (username: string, password: string, rememberMe:boolean): Observable<User | null> {
      // return this.http.post<User | null>(this.loginUrl, {username: username, password: password, rememberMe: 
 
-    editFavFilms(filmId: number ):Observable<any> {
-      if (this.loggedUser!.favorite_films != null) {
+    editFavFilms(filmId: number, check: boolean ):Observable<any> {
+      if (check) {
         this.loggedUser!.favorite_films.push(filmId);
       } else {
-        this.loggedUser!.favorite_films = [];
-        this.loggedUser!.favorite_films.push(filmId);
+        this.loggedUser!.favorite_films.splice(filmId);
       }
-      let favourites = {"ids": this.loggedUser?.favorite_films.toString()};
-
-
-
-      
-      
-
+      let favourites = {"ids": this.loggedUser!.favorite_films.toString()};
 
       return this.http.post<any>('https://netflix.cristiancarrino.com/user/favorite-films.php', favourites, {
         headers: new HttpHeaders({
@@ -118,13 +109,8 @@ console.log('login', response);
     }
 
 
-    getFav(): Observable<number[]> {
-      return this.http.get<number[]>('https://netflix.cristiancarrino.com/user/favorite-films.php', {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': this.loggedUser ? this.loggedUser.token : ''
-        })
-      });
+    getFav(): number[] {
+      return this.loggedUser!.favorite_films;
     }
   
 
