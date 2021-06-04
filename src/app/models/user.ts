@@ -2,10 +2,10 @@ export interface User {
     id?: number;
     username: string;
     password: string;
-    firstame: string;
+    firstname: string;
     lastname: string;
     birthdate: Date;
-    favourite_films: number[];
+    favorite_films: number[];
     favourite_actors: number[];
     favourite_genres: number[];
     token: string;

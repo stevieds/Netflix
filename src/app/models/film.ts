@@ -1,11 +1,12 @@
 import { Actor } from './actor';
 import { Genre } from './genre';
 export interface Film {
+
     id: number;
     title: string;
     description: string;
     plot?: string;
-    duration: number;
+    duration: string;
     release_year: number;
     cover_url: string;
     tags: string;
@@ -13,6 +14,7 @@ export interface Film {
     stars: number;
     actors: Actor[];
     genres: Genre[];
-    votes?: number[];
+    votes?: number[],
+    director?: string;
     vote: number;
 }

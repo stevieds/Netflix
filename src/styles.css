@@ -3,3 +3,24 @@ body {
     background-color: black;
 }
 
+a {
+    color: white;
+}
+
+a:hover {
+    color: white;
+
+}
+
+.form-control:focus {
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.2rem rgba(255, 83, 97, 0.329);
+}
+
+.title {
+    color:#dc3545;
+    text-align: center;
+    border-top:none;
+}
+
+

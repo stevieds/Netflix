@@ -1,31 +1,51 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, OnInit, Output } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import {   CanActivate, Router,
+	ActivatedRouteSnapshot,
+	RouterStateSnapshot,
+	CanActivateChild,
+	UrlTree } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
 
+@Injectable({
+	providedIn: 'root',
+  })
 
-
-	title = 'Netflix';
-	hideLogin: boolean = true;
-	menuIsOpen: boolean = false;
-
+export class LoginComponent implements OnInit, CanActivate {
+	userId: number=0;
 	username: string = '';
 	password: string = '';
 	rememberMe: boolean = false;
-
 	constructor(
 		public userService: UserService,
 		private router: Router
 	) { }
 
+	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): true|UrlTree {
+		const url: string = state.url;
+	
+		return this.checkLogin(url);
+	  }
+
+	  checkLogin(url: string): true|UrlTree {
+		if (this.userService.loggedIn || this.userService.getLoggedUser() ) { 
+			console.log("true");
+			return true; }
+		else {     
+			console.log("false");
+			return this.router.createUrlTree(['/login']);
+	}
+
+	  }
+
 	ngOnInit(): void {
 		this.userService.getLoggedUser();
+
 	}
 
 
@@ -34,8 +54,8 @@ export class LoginComponent implements OnInit {
     this.userService.login(this.username, this.password, this.rememberMe).subscribe(response => {
       if (response !== null) {
 		this.router.navigate(['/dashboard']);
-        
-        // OK
+
+
       } else {
         alert("Login NON riuscito!");
       }
@@ -48,7 +68,6 @@ export class LoginComponent implements OnInit {
 
 	logout() {
 		this.userService.logout();
-		//this.hideLogin = true;
   }
 
 }

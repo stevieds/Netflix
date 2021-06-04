@@ -1,5 +1,5 @@
 <div>
-<div *ngIf="film" class="d-flex flex-row justify-content-center details">
+<div *ngIf="film" class="d-flex flex-row justify-content-start details" style="background-image:linear-gradient(to right, black, rgba(0, 0, 0, 0.87), rgba(0, 0, 0, 0)), url('{{film.cover_url}}');">
 
 
 
@@ -7,10 +7,29 @@
 
 
   <div *ngIf="film" class="mainDetails align-self-center" >
-    <h1>{{film.title}} </h1>
-  <span class="spanDetails">{{film.release_year}} {{film.duration}} <span class="badge badge-secondary">{{film.vote}}</span></span>
-      <span class="spanDetails"><span class="titleD">Starring: </span> <span *ngFor="let actor of film.actors">{{actor.firstname}} {{actor.lastname}} </span> </span>
-      <span class="spanDetails"><span class="titleD">Genere: </span> <span *ngFor="let genre of film.genres">{{genre.name}} </span></span>
+    <h1>{{film.title}} 
+      <a routerLink="/edit-film/{{film.id}}">
+        <fa-icon [icon]="faEdit"></fa-icon>
+    </a>
+    <fa-icon [icon]="heart" (click)="addToFavourites()"></fa-icon>
+
+
+
+
+    </h1>
+
+  <span class="spanDetails">{{film.release_year}} {{ film.duration ? film.duration.slice(0,5) : '--:--' }} <span class="badge badge-secondary">{{film.vote}}</span></span>
+      <span class="spanDetails"><span class="titleD">Con: </span> <span *ngFor="let actor of film.actors">
+        <a routerLink="/actord/{{actor.id}}">
+          {{actor.firstname}} {{actor.lastname}}</a> 
+      </span> </span>
+      <span class="spanDetails"><span class="titleD">Diretto da: </span>{{film.director}} </span>
+      <span class="spanDetails"><span class="titleD">Genere: </span> <span *ngFor="let genre of film.genres">
+        <a routerLink="/genre/{{genre.id}}">
+          {{genre.name}}</a>
+      </span></span>
+      <span class="spanDetails" *ngIf="tags"> <span class="titleD">Tags: </span> <span *ngFor="let tag of tags" class="btn btn-outline-light btn-sm tag">{{tag}}</span> </span>
+      
 
       <div *ngIf="film" class="plot ">
           <h4>Trama</h4>
@@ -25,7 +44,6 @@
 
 
   </div>
-  <div class="bgFilm align-self-stretch" style="background-image:linear-gradient(to right, black, rgba(0, 0, 0, 0)), url('{{film.cover_url}}');"> </div>
 </div>
 
 

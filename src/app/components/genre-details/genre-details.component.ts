@@ -1,4 +1,4 @@
-  
+
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -6,6 +6,7 @@ import { FilmService } from 'src/app/services/film.service';
 import { GenreService } from 'src/app/services/genre.service';
 import { Genre } from '../../models/genre';
 import { Film } from '../../models/film';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-genre-details',
@@ -13,8 +14,10 @@ import { Film } from '../../models/film';
   styleUrls: ['./genre-details.component.css']
 })
 export class GenreDetailsComponent implements OnInit {
+  faEdit = faEdit;
   films: Film[] = [];
   genres: Genre[] = [];
+  genre: Genre | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,14 +29,22 @@ export class GenreDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getFilms();
     this.getGenres();
+
   }
 
-  getGenres():void{
-    this.genreService.getGenres().subscribe(genres => this.genres = genres);
+  getGenres(): void {
+    let id = +(this.route.snapshot.paramMap.get('id') || 0);
+    id = isNaN(id) ? 0 : id;
+    this.genreService.getGenres().subscribe(genres => {
+      this.genres = genres;
+      this.genre = genres.find(x => x.id == id)
+    }
+    );
   };
 
 
-  getFilms():void{
+
+  getFilms(): void {
     let film;
     let id = +(this.route.snapshot.paramMap.get('id') || 0);
     id = isNaN(id) ? 0 : id;
@@ -41,7 +52,7 @@ export class GenreDetailsComponent implements OnInit {
 
     this.filmService.getFilms().subscribe(films => {
       console.log(films[0].genres.map(genre => genre.id));
-      this.films=films.filter(film => film.genres.map(genre => ''+genre.id).indexOf(''+id)>-1);
+      this.films = films.filter(film => film.genres.map(genre => '' + genre.id).indexOf('' + id) > -1);
       console.log(this.films);
     });
   };

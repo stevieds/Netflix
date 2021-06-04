@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Genre } from '../../models/genre';
+import { GenreService } from 'src/app/services/genre.service';
+
+
 
 @Component({
   selector: 'app-add-genre',
@@ -7,11 +10,26 @@ import { Genre } from '../../models/genre';
   styleUrls: ['./add-genre.component.css']
 })
 export class AddGenreComponent implements OnInit {
-  name:string = "";
+  
 
-  constructor() { }
+  genre : Genre = 
+  {
+    id: 0,
+    name: "",
+    created_by: 0,
+    selected: false,
+    films: []
+};
+
+  constructor(
+    private genreService: GenreService
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  addGenre() {
+    this.genreService.addGenre(this.genre).subscribe(response => {console.log(response)});
   }
 
 }

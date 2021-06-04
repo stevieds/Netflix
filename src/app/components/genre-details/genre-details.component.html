@@ -1,8 +1,30 @@
-<div class="container">
-    <div class="row row-cols-4 listA">
-        <div *ngFor="let film of films" class="col listC">
+<div class="container" *ngIf="genre">
+    <h1>{{genre.name}}
+        <a routerLink="/edit-genre/{{genre.id}}">
+        <fa-icon [icon]="faEdit"></fa-icon>
+    </a>
+    </h1>
+    
+
+    <div class="row row-cols-5">
+        <div *ngFor="let film of films" class="col">
+  
+            <img src="{{film.cover_url}}" class="thumb" alt="{{film.title}}">
+  
+  
+            
             <a routerLink="/filmd/{{film.id}}">
-                {{film.title}}</a>
-        </div>
-    </div>
+            <div class="thumb-overlay">
+              <div class="thumb-text">
+                {{film.description}}
+            </div>
+          </div>
+        </a>
+
+
+
+
+
 </div>
+
+

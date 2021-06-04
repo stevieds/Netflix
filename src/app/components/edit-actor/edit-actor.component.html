@@ -1,0 +1,20 @@
+<h3 class="title"> Aggiungi un attore </h3>
+
+<form *ngIf="actor">
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" class="form-control" name="firstname" [(ngModel)]="actor.firstname">
+    </div>
+
+    <div class="form-group">
+      <label>Cognome</label>
+      <input type="text" class="form-control" name="lastname" [(ngModel)]="actor.lastname">
+    </div>
+
+    <div class="form-group">
+        <label>Data di nascita</label>
+        <input type="date" class="form-control" name="birthdate" [(ngModel)]="actor.birthdate">
+      </div>
+
+    <button type="submit" class="btn btn-primary" (click)="editActor()">Submit</button>
+  </form>

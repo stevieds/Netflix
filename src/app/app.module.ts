@@ -26,6 +26,13 @@ import { AddGenreComponent } from './components/add-genre/add-genre.component';
 import { AddActorComponent } from './components/add-actor/add-actor.component';
 import {NgxLocalStorageModule} from 'ngx-localstorage';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { EditFilmComponent } from './components/edit-film/edit-film.component';
+import { EditActorComponent } from './components/edit-actor/edit-actor.component';
+import { EditGenreComponent } from './components/edit-genre/edit-genre.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { ModifyUserComponent } from './components/modify-user/modify-user.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +48,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AddFilmComponent,
     AddGenreComponent,
     AddActorComponent,
-    NavbarComponent
+    NavbarComponent,
+    EditFilmComponent,
+    EditActorComponent,
+    EditGenreComponent,
+    UserDetailsComponent,
+    ModifyUserComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +67,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ButtonsModule.forRoot(),
     CollapseModule.forRoot(),
     CarouselModule.forRoot(),
-    NgxLocalStorageModule.forRoot()
+    NgxLocalStorageModule.forRoot(),
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

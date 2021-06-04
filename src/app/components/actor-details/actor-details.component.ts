@@ -6,6 +6,8 @@ import { ActorService } from 'src/app/services/actor.service';
 import { Actor } from '../../models/actor';
 import { FilmService } from 'src/app/services/film.service';
 import { Film } from '../../models/film';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'app-actor-details',
@@ -13,6 +15,7 @@ import { Film } from '../../models/film';
   styleUrls: ['./actor-details.component.css']
 })
 export class ActorDetailsComponent implements OnInit {
+  faEdit = faEdit;
   actor?: Actor | undefined;
   films: Film[] = [];
 

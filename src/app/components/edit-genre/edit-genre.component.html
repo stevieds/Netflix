@@ -1,0 +1,12 @@
+<h3 class="title"> Modifica genere </h3>
+
+
+
+<form *ngIf="genre">
+    <div class="form-group">
+      <label>Nome</label>
+      <input type="text" class="form-control" value="{{genre.name}}" name="genre" [(ngModel)]="genre.name">
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click) = "editGenre()">Submit</button>
+  </form>

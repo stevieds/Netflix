@@ -30,3 +30,12 @@ th {
     text-align:center;
     padding-bottom: 25px;
 }
+
+fa-icon {
+    color: grey;
+    font-size: 50px;
+}
+
+fa-icon:hover {
+    color: white;
+}

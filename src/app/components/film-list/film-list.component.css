@@ -17,7 +17,53 @@ h6 {
 }
 
 .col {
-    border-left: 2px solid #dc3545;
     margin-top: 15px;
     margin-bottom: 15px;
+    padding: 0;
 }
+
+
+
+
+
+
+.thumb-container {
+    position: relative;
+    width: 50%;
+
+  }
+  
+
+  
+  .thumb-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.534);
+    overflow: hidden;
+    width: 200px;
+    height: 0;
+    transition: .5s ease;
+  }
+  
+  .col:hover .thumb-overlay {
+    height: 80%;
+  }
+  
+  .thumb-text {
+    color: white;
+    font-size: 1rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: justify;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    text-shadow: 1px 1px 3px black;
+    font-weight: 100;
+  }

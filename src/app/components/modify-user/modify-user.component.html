@@ -1,0 +1,42 @@
+<h3 class="title"> Modifica utente</h3>
+
+<div class="cont" *ngIf="user">
+  <form>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Username</label>
+          <input type="text" class="form-control" value="{{user.username}}" name="username" [(ngModel)]="user.username">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Password</label>
+          <input type="text" class="form-control" name="password" [(ngModel)]="user.password">
+        </div>
+      </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label>Nome</label>
+        <input type="text" class="form-control" value="{{user.firstname}}" name="firstname" [(ngModel)]="user.firstname">
+      </div>
+      <div class="form-group col-md-4">
+        <label>Cognome</label>
+        <input type="text" class="form-control" name="cognome" [(ngModel)]="user.lastname">
+      </div>
+      <div class="form-group col-md-4">
+        <label>Data di nascita</label>
+        <input type="date" class="form-control" name="Data di nascita" [(ngModel)]="user.birthdate">
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <button type="submit" class="btn btn-danger" (click)="edit()">Invia</button>
+  </form>
+
+</div>

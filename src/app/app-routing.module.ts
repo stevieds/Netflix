@@ -11,6 +11,7 @@ import { AddGenreComponent } from './components/add-genre/add-genre.component';
 import { AddActorComponent } from './components/add-actor/add-actor.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserDetailsComponent } from './components/user-details/user-details.component';
 
 const routes: Routes = [
   { path: 'films', component: FilmListComponent },
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'addG', component: AddGenreComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'user-details', component: UserDetailsComponent },
 ];
 
 @NgModule({

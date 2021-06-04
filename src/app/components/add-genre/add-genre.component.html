@@ -1,10 +1,12 @@
 <h3 class="title"> Aggiungi un genere </h3>
 
+
+
 <form>
     <div class="form-group">
       <label>Nome</label>
-      <input type="text" class="form-control" [(ngModel)]="name">
+      <input type="text" class="form-control" name="genre" [(ngModel)]="genre.name">
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" (click) = "addGenre()">Submit</button>
   </form>

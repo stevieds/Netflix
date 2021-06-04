@@ -3,28 +3,43 @@
 <div class="cont">
   <form>
     <div class="form-row">
-      <div class="form-group">
+      <div class="form-group col-md-6">
         <label>Titolo</label>
         <input type="text" class="form-control" name="title" [(ngModel)]="film.title">
+      </div>
+      <div class="form-group col-md-6">
+        <label>Regista</label>
+        <input type="text" class="form-control" name="director" [(ngModel)]="film.director">
       </div>
 
     </div>
 
 
-        <div class="d-flex align-content-start flex-wrap" >
-          <div class="col" *ngFor="let genre of allGenres">
-              <button type="button" value={{genre.id}} class="btn btn-outline-secondary" name={{genre.name}} (click)="addG()">{{genre.name}}</button>
-          </div>
-        </div>
+    <div class="form-group">
+      <label>Generi</label>
+      <div>
+          <button type="button" class="btn btn-sm m-1" *ngFor="let genre of allGenres" 
+              (click)="genre.selected = !genre.selected"
+              [class.btn-secondary]="genre.selected"
+              [class.btn-outline-secondary]="!genre.selected">
+              {{ genre.name }}
+          </button>
+      </div>
+  </div>
+
+  <div class="form-group">
+    <label>Attori</label>
+    <div>
+        <button type="button" class="btn btn-sm m-1" *ngFor="let actor of allActors" 
+            (click)="actor.selected = !actor.selected"
+            [class.btn-secondary]="actor.selected"
+            [class.btn-outline-secondary]="!actor.selected">
+            {{ actor.firstname }} {{ actor.lastname }}
+        </button>
+    </div>
+</div>
 
 
-        <div class="d-flex align-content-start flex-wrap" >
-            <div class="col" *ngFor="let actor of allActors">
-                <button type="button" value={{actor.id}} class="btn btn-outline-secondary" name="actor" (click)="addA()">{{actor.firstname}} {{actor.lastname}}</button>
-            </div>
-          </div>
-
-        
 
 
 
@@ -32,11 +47,20 @@
 
     <div class="form-group">
       <label>Descrizione</label>
-      <textarea class="form-control" name="description"[(ngModel)]="film.description"></textarea>
+      <textarea class="form-control" name="description" rows="4" maxlength="250" [(ngModel)]="film.description"></textarea>
     </div>
     <div class="form-group">
       <label>Trama</label>
-      <textarea class="form-control" name="plot" [(ngModel)]="film.plot"></textarea>
+      <textarea class="form-control" name="plot" rows="21" [(ngModel)]="film.plot"></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Tags</label>
+        <input type="text" class="form-control" name="tags" [(ngModel)]="film.tags">
+      </div>
+
+
     </div>
 
     <div class="form-row">
@@ -44,13 +68,19 @@
         <label>Cover</label>
         <input type="text" class="form-control" name="cover" [(ngModel)]="film.cover_url">
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-2">
         <label>Durata</label>
-        <input type="number" class="form-control" name="duration" [(ngModel)]="film.duration">
+        <input type="time" class="form-control" name="duration" [(ngModel)]="film.duration">
       </div>
       <div class="form-group col-md-2">
         <label>Anno</label>
         <input type="number" class="form-control" name="year" [(ngModel)]="film.release_year">
+      </div>
+      <div class="form-group col-md-2">
+        <label>Voto</label>
+        <input type="range" class="form-control-range" name="vote" min="0" max="5" step="0.5" [(ngModel)]="film.vote">
+
+
       </div>
     </div>
 

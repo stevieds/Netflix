@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap, max, take, filter } from 'rxjs/operators';
+import { Observable, of, pipe } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-
-
-
 import { Film } from '../models/film';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +29,23 @@ export class FilmService {
       })
     });
   }
+
+  editFilm (film: Film):Observable<Film | null> {
+    return this.http.post<Film>('https://netflix.cristiancarrino.com/film/update.php', film, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
+      })
+    }).pipe(tap(),
+    catchError(error => {alert(error.error);
+    return of(null);
+  })
+    )
+    
+    ;
+  }
+
+
 
 }
 

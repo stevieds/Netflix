@@ -8,6 +8,9 @@ import { UserService } from 'src/app/services/user.service';
 import { Film } from 'src/app/models/film';
 import { Actor } from 'src/app/models/actor';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'ngx-localstorage';
+
+
 
 
 
@@ -19,6 +22,7 @@ import { Router } from '@angular/router';
 export class AddFilmComponent implements OnInit {
   allGenres: Genre[] = [];
   allActors: Actor[] = [];
+  gen: number=0;
 
 
   film : Film = {
@@ -28,14 +32,14 @@ export class AddFilmComponent implements OnInit {
     title: "",
     description: "",
     plot: "",
-    duration: 0,
+    duration: "",
     release_year: 0,
     genres:  [],
     vote: 0,
     votes: [],
     tags : "",
     id: 0,
-    stars:0
+    stars:0,
   }
 
 
@@ -43,8 +47,9 @@ export class AddFilmComponent implements OnInit {
     private genreService: GenreService,
     private filmService: FilmService,
     private actorService: ActorService,
-    private userService: UserService,
+    private localStorage: LocalStorageService,
     private router: Router,
+    private userService: UserService
 
   ) { }
 
@@ -61,21 +66,16 @@ export class AddFilmComponent implements OnInit {
     this.actorService.getActors().subscribe(actors => this.allActors = actors);
   };
 
-  addG () {
-    this.film.genres.push(genre);
-  }
 
-  addA (actor: Actor) {
-    this.film.actors.push(actor);
-  }
+
+
 
   add() {
-    this.filmService.addFilm(this.film).subscribe(response => {console.log(response)
-    }
-      );
+    this.film.actors=this.allActors.filter(x => x.selected);
+    this.film.genres=this.allGenres.filter(x => x.selected);
+    this.filmService.addFilm(this.film).subscribe(response => {console.log(response)});
   }
 
-// this.userService.loggedUser.id
 
 
 }

@@ -1,8 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { FilmService } from 'src/app/services/film.service';
 import { Film } from '../../models/film';
+import { User } from '../../models/user';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+//import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { UserService } from 'src/app/services/user.service';
+import { MessagesService } from 'src/app/services/messages.service';
+
 
 
 @Component({
@@ -11,12 +18,20 @@ import { Film } from '../../models/film';
   styleUrls: ['./film-details.component.css']
 })
 export class FilmDetailsComponent implements OnInit {
+  faEdit = faEdit;
+  heart = faHeart;
+  tags?: string[]  | undefined;
   film?: Film | undefined;
+  favourite: boolean = false;
+  @Output() fav = new EventEmitter<number>();
 
   constructor(
     private route: ActivatedRoute,
     private filmService: FilmService,
-    private location: Location
+    private location: Location,
+    private userService: UserService,
+    private messagesService: MessagesService,
+
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +44,32 @@ export class FilmDetailsComponent implements OnInit {
     id = isNaN(id) ? 0 : id;
 
     // Filtro il film con il metodo find
-    this.filmService.getFilms().subscribe(films => {this.film = films.find(x => x.id == id)});
+    this.filmService.getFilms().subscribe(films => {
+      this.film = films.find(x => x.id == id);
+      if (this.film!.tags) {
+      this.tags = this.film!.tags.split("; ")
+    }
+    });
+
+    // Popolo tags
+    
+}
+
+
+
+
+
+addToFavourites() {
+  this.userService.editFavFilms(this.film!.id).subscribe(response => {
+    if (response !== null) {
+      console.log(response);
+  
+  
+        }
+  
+  
+  });
+
 }
 
 }

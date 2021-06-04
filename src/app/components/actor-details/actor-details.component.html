@@ -3,7 +3,18 @@
   <table *ngIf="actor" class="table align-self-center">
       <tbody>
           <tr>
-              <td class="title" colspan="2"><h3>{{actor.firstname}} {{actor.lastname}}</h3></td>
+              <td class="title" colspan="2">
+                
+                
+                  <h1>{{actor.firstname}} {{actor.lastname}}
+                    <a routerLink="/edit-actor/{{actor.id}}">
+                      <fa-icon [icon]="faEdit"></fa-icon>
+                  </a>
+
+                  </h1>
+                
+              
+              </td>
           </tr>
         <tr>
           <th scope="row">Data di nascita</th>

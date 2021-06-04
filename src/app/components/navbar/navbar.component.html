@@ -27,10 +27,25 @@
               <a class="nav-link"  [routerLink]="['addG']">Genere</a>
             </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link"  [routerLink]="['login']">Login</a>
+
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Utente
+            </a>
+            <div class="dropdown-menu nav-bl navbar-dark" aria-labelledby="navbarDropdownMenuLink">
+              <a class="nav-link"  [routerLink]="['user-details']">Profilo</a>
+              <a class="nav-link logout" (click)="logout()">Logout</a>
+              <a class="nav-link"  [routerLink]="['addG']">Genere</a>
+            </div>
           </li>
+
+
+
+
         </ul>
       </div>
     </div>
   </nav>
+<br>
+

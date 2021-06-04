@@ -13,14 +13,16 @@
       <div class="carousel-item active">
         <img src="https://cdn.vox-cdn.com/thumbor/QuS2QKQys3HhosKiV-2IuKhphbo=/39x0:3111x2048/1400x1050/filters:focal(39x0:3111x2048):format(png)/cdn.vox-cdn.com/uploads/chorus_image/image/49901753/netflixlogo.0.0.png" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Ultimi film inseriti</h5>
+          <h1>Ultimi film inseriti</h1>
         </div>
       </div>
 
       <div *ngFor="let film of lastFilms" class="carousel-item">
-        <img src={{film.cover_url}} class="d-block w-100" alt="...">
+        <a routerLink="/filmd/{{film.id}}">
+        <img src={{film.cover_url}} class="d-block w-100" alt="{{film.title}}">
+      </a>
         <div class="carousel-caption d-none d-md-block">
-
+          <h1>Ultimi film inseriti</h1>
         </div>
       </div>
 
@@ -49,13 +51,16 @@
       <div class="carousel-item active">
         <img src="https://cdn.vox-cdn.com/thumbor/QuS2QKQys3HhosKiV-2IuKhphbo=/39x0:3111x2048/1400x1050/filters:focal(39x0:3111x2048):format(png)/cdn.vox-cdn.com/uploads/chorus_image/image/49901753/netflixlogo.0.0.png" class="d-block w-100" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h5>Top film</h5>
+          <h1>Top film</h1>
         </div>
       </div>
 
       <div *ngFor="let film of firstFilms" class="carousel-item">
-        <img src={{film.cover_url}} class="d-block w-100" alt="...">
+        <a routerLink="/filmd/{{film.id}}">
+          <img src={{film.cover_url}} class="d-block w-100" alt="{{film.title}}">
+        </a>
         <div class="carousel-caption d-none d-md-block">
+          <h1>Top film</h1>
         </div>
       </div>
 

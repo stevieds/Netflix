@@ -3,18 +3,18 @@
 <form>
     <div class="form-group">
       <label>Nome</label>
-      <input type="text" class="form-control" [(ngModel)]="firstname">
+      <input type="text" class="form-control" name="firstname" value ="{{actor.firstname}}" [(ngModel)]="actor.firstname">
     </div>
 
     <div class="form-group">
       <label>Cognome</label>
-      <input type="text" class="form-control" [(ngModel)]="lastname">
+      <input type="text" class="form-control" name="lastname" value ="{{actor.lastname}}" [(ngModel)]="actor.lastname">
     </div>
 
     <div class="form-group">
         <label>Data di nascita</label>
-        <input type="date" class="form-control" [(ngModel)]="birthdate">
+        <input type="date" class="form-control" name="birthdate" value ="{{actor.birthdate}}"[(ngModel)]="actor.birthdate">
       </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="addActor()">Submit</button>
   </form>
