@@ -23,4 +23,16 @@ a:hover {
     border-top:none;
 }
 
+.buttons {
+    display:flex;
+    flex-direction: rows;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+}
+
+.button-first {
+    margin-right: 5px;
+}
+
 

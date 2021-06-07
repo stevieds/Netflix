@@ -8,6 +8,7 @@ import { Film } from '../../models/film';
 import { Genre } from '../../models/genre';
 import { Actor } from '../../models/actor';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-actor',
@@ -20,6 +21,7 @@ export class EditActorComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private filmService: FilmService,
     private genreService: GenreService,
     private location: Location,
@@ -38,13 +40,14 @@ export class EditActorComponent implements OnInit {
 }
 
 editActor () {
-  if (this.userService.getLoggedUser() === null) {
-    this.actor!.created_by=Number(this.userService.loggedUser!.id);
-  } else {
-    this.actor!.created_by=Number(this.userService.getLoggedUser()!.id);
-  }
+  let url="/actord/" + this.actor!.id;
+
   
-  this.actorService.editActor(this.actor!).subscribe(response => {console.log(response)});
+  this.actorService.editActor(this.actor!).subscribe(response => {
+    if (response && response.success && response.success==true) {
+      this.router.navigate([url]);    
+      }
+  });
 }
 
 }

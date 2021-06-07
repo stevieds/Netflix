@@ -8,5 +8,8 @@
       <input type="text" class="form-control" name="genre" [(ngModel)]="genre.name">
     </div>
 
-    <button type="submit" class="btn btn-primary" (click) = "addGenre()">Submit</button>
+    <div class="buttons">
+    <button type="submit" class="btn btn-danger button-first" (click) = "addGenre()">Submit</button>
+    <button type="reset" class="btn btn-light" >Pulisci</button>
+  </div>
   </form>

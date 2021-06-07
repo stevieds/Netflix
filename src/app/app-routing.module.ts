@@ -12,6 +12,10 @@ import { AddActorComponent } from './components/add-actor/add-actor.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { EditFilmComponent } from './components/edit-film/edit-film.component';
+import { EditActorComponent } from './components/edit-actor/edit-actor.component';
+import { ModifyUserComponent } from './components/modify-user/modify-user.component';
+import { EditGenreComponent } from './components/edit-genre/edit-genre.component';
 
 const routes: Routes = [
   { path: 'films', component: FilmListComponent },
@@ -26,6 +30,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'user-details', component: UserDetailsComponent },
+  { path: 'edit-film/:id', component: EditFilmComponent },
+  { path: 'modify-user', component: ModifyUserComponent },
+  { path: 'edit-actor/:id', component: EditActorComponent },
+  { path: 'edit-genre/:id', component: EditGenreComponent },
 ];
 
 @NgModule({

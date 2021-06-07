@@ -41,12 +41,12 @@ export class ModifyUserComponent implements OnInit {
   getUserDetails (): void {
     this.user = this.userService.loggedUser;
 
-    this.genres.forEach((genreA) => this.user?.favourite_genres.forEach((genreB) => {
+    this.genres.forEach((genreA) => this.user?.favorite_genres.forEach((genreB) => {
       if (genreA.id === genreB) {
         genreA.selected = true;
       }
     }));
-    this.actors.forEach((actorA) => this.user?.favourite_actors.forEach((actorB) => {
+    this.actors.forEach((actorA) => this.user?.favorite_actors.forEach((actorB) => {
       if (actorA.id === actorB) {
         actorA.selected = true;
       }
@@ -74,8 +74,6 @@ export class ModifyUserComponent implements OnInit {
   edit() {
     let url="/user-details/";
 
-    //this.user!.favourite_actors=this.actors.filter(x => x.selected).map(actor => actor.id);
-    //this.user!.favourite_genres=this.genres.filter(x => x.selected).map(genre => genre.id);
 
     
     this.userService.editUser(this.user!).subscribe(response => {
@@ -93,7 +91,7 @@ export class ModifyUserComponent implements OnInit {
 
   favFilms() {
     let url="/user-details/";
-    this.user!.favourite_actors=this.actors.filter(x => x.selected).map(actor => actor.id);
+    this.user!.favorite_actors=this.actors.filter(x => x.selected).map(actor => actor.id);
     this.userService.editUser(this.user!).subscribe(response => {
       if (response !== null) {
         this.router.navigate([url]);

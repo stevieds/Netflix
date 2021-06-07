@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Genre } from '../../models/genre';
 import { GenreService } from 'src/app/services/genre.service';
+import { Router } from '@angular/router';
 
 
 
@@ -22,14 +23,20 @@ export class AddGenreComponent implements OnInit {
 };
 
   constructor(
-    private genreService: GenreService
+    private genreService: GenreService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
   }
 
   addGenre() {
-    this.genreService.addGenre(this.genre).subscribe(response => {console.log(response)});
+    let urlList="/genres/";
+    this.genreService.addGenre(this.genre).subscribe(response => {
+      if (response.success && response.success==true) {
+        this.router.navigate([urlList]);
+      } 
+    });
   }
 
 }

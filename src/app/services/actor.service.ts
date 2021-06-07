@@ -33,21 +33,37 @@ export class ActorService {
    }
 
    addActor(actor: Actor) {
-    return this.http.post<Actor>('https://netflix.cristiancarrino.com/actor/create.php', actor, {
+    return this.http.post<any>('https://netflix.cristiancarrino.com/actor/create.php', actor, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
-    });
+    }).pipe(tap(response => {
+      if (response.success && response.success == true) {
+        alert(response.message);
+      }
+    }),
+    catchError(error => {alert(error.error);
+    return of(null);
+  })
+    );
   }
 
   editActor (actor: Actor) {
-    return this.http.post<Actor>('https://netflix.cristiancarrino.com/actor/update.php', actor, {
+    return this.http.post<any>('https://netflix.cristiancarrino.com/actor/update.php', actor, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
-    });
+    }).pipe(tap(response => {
+      if (response.success && response.success == true) {
+        alert(response.message);
+      }
+    }),
+    catchError(error => {alert(error.error);
+    return of(null);
+  })
+    );;
   }
 
 }

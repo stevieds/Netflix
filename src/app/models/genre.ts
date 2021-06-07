@@ -1,6 +1,6 @@
 import { Film } from './film';
 export interface Genre {
-    id?: number;
+    id: number;
     name: string;
     created_by: number;
     selected?: boolean;

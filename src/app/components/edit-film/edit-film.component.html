@@ -33,6 +33,15 @@
           </div>
       </div>
 
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label>Tags</label>
+          <input type="text" class="form-control" name="tags" [(ngModel)]="film.tags">
+        </div>
+  
+  
+      </div>
+
 
     <div class="form-group">
       <label>Generi</label>
@@ -70,7 +79,7 @@
     </div>
     <div class="form-group">
       <label>Trama</label>
-      <textarea class="form-control" name="plot" [(ngModel)]="film.plot"></textarea>
+      <textarea class="form-control" name="plot" rows=21 [(ngModel)]="film.plot"></textarea>
     </div>
 
 
@@ -90,6 +99,7 @@
 
 
     <button type="submit" class="btn btn-danger" (click)="edit()">Invia</button>
+    <button type="reset" class="btn btn-light" >Pulisci</button>
   </form>
 
 </div>

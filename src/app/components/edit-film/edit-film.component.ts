@@ -72,15 +72,15 @@ export class EditFilmComponent implements OnInit {
 
   edit() {
     let url="/filmd/"+this.film!.id;
+    
+
 
     this.film!.actors=this.actors.filter(x => x.selected);
     this.film!.genres=this.genres.filter(x => x.selected);
     
     this.filmService.editFilm(this.film!).subscribe(response => {
-      if (response !== null) {
-        this.router.navigate([url]);
-    
-    
+        if (response.success && response.success==true) {
+          this.router.navigate([url]);    
           }
     
     

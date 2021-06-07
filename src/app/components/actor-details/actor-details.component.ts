@@ -7,6 +7,9 @@ import { Actor } from '../../models/actor';
 import { FilmService } from 'src/app/services/film.service';
 import { Film } from '../../models/film';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faSHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -17,6 +20,10 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 export class ActorDetailsComponent implements OnInit {
   faEdit = faEdit;
   actor?: Actor | undefined;
+  favourite: boolean = false;
+  favourites: number[] = [];
+  emptyHeart = faHeart;
+  fullHeart = faSHeart;
   films: Film[] = [];
 
   constructor(
@@ -24,6 +31,7 @@ export class ActorDetailsComponent implements OnInit {
     private actorService: ActorService,
     private location: Location,
     private filmService: FilmService,
+    private userService: UserService,
   ) { }
 
   ngOnInit(): void {
@@ -47,5 +55,10 @@ export class ActorDetailsComponent implements OnInit {
       this.films=films.filter(film => film.actors.map(actor => ''+actor.id).indexOf(''+id)>-1);
     });
   };
+
+  toggleFav() {
+    this.favourite = !this.favourite;
+    this.userService.editFavActors(this.actor!.id, this.favourite).subscribe();
+  }
 
 }

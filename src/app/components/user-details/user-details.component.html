@@ -1,15 +1,39 @@
 <div class="d-flex justify-content-around" *ngIf="user">
-    <div>Preferiti
+    <div class="fav">
+      Preferiti
         <div *ngIf="user.favorite_films">
-         <p *ngFor="let film of user.favorite_films">{{film}}</p>
+          Film
+          
+         <p *ngFor="let film of films">
+           {{film.title}}
+          <a routerLink="/filmd/{{film.id}}">
+           <fa-icon [icon]="faEye"></fa-icon>
+           </a> 
+           <fa-icon [icon]="faMinus" (click)="editFavFilm(film)"></fa-icon>
+           
+          </p>
+        
         </div>
         
-        <div *ngIf="user.favourite_genres"></div>
-        <p *ngFor="let genre of user.favourite_genres">{{genre}}</p>
-        <div *ngIf="user.favourite_actors"></div>
-        <p *ngFor="let actor of user.favourite_actors">{{actor}}</p>
+        <div *ngIf="user.favorite_genres">
+          Generi
+        </div>
+        <p *ngFor="let genre of genres">{{genre}}
+          <a routerLink="/genred/{{genre.id}}">
+            <fa-icon [icon]="faEye"></fa-icon>
+            </a> 
+            <fa-icon [icon]="faMinus" (click)="editFavGenre(genre)"></fa-icon>
+        </p>
+        <div *ngIf="user.favorite_actors">Attori</div>
+        <p *ngFor="let actor of actors">{{actor.firstname}} {{actor.lastname}}
+          <a routerLink="/actord/{{actor.id}}">
+            <fa-icon [icon]="faEye"></fa-icon>
+            </a> 
+            <fa-icon [icon]="faMinus" (click)="editFavActor(actor)"></fa-icon>
+        </p>
 
     </div>
+    
     <div>
 
       <h1>Modifica

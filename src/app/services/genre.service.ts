@@ -23,21 +23,37 @@ export class GenreService {
 
 
    addGenre(genre: Genre) {
-    return this.http.post<Genre>('https://netflix.cristiancarrino.com/genre/create.php', genre, {
+    return this.http.post<any>('https://netflix.cristiancarrino.com/genre/create.php', genre, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
-    });
+    }).pipe(tap(response => {
+      if (response.success && response.success == true) {
+        alert(response.message);
+      }
+    }),
+    catchError(error => {alert(error.error);
+    return of(null);
+  })
+    );
   }
 
   editGenre (genre: Genre) {
-    return this.http.post<Genre>('https://netflix.cristiancarrino.com/genre/update.php', genre, {
+    return this.http.post<any>('https://netflix.cristiancarrino.com/genre/update.php', genre, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
-    });
+    }).pipe(tap(response => {
+      if (response && response.success && response.success == true) {
+        alert(response.message);
+      }
+    }),
+    catchError(error => {alert(error.error);
+    return of(null);
+  })
+    );;
   }
 
 

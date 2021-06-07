@@ -71,9 +71,14 @@ export class AddFilmComponent implements OnInit {
 
 
   add() {
+    let url = "/films/"
     this.film.actors=this.allActors.filter(x => x.selected);
     this.film.genres=this.allGenres.filter(x => x.selected);
-    this.filmService.addFilm(this.film).subscribe(response => {console.log(response)});
+    this.filmService.addFilm(this.film).subscribe(response => {
+      if (response.success && response.success==true) {
+        this.router.navigate([url]);
+      } 
+    });
   }
 
 

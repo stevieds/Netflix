@@ -9,7 +9,9 @@
                   <h1>{{actor.firstname}} {{actor.lastname}}
                     <a routerLink="/edit-actor/{{actor.id}}">
                       <fa-icon [icon]="faEdit"></fa-icon>
+                      
                   </a>
+                  <fa-icon [icon]='this.favourite? this.fullHeart:emptyHeart' (click)="toggleFav()"></fa-icon>
 
                   </h1>
                 

@@ -51,9 +51,7 @@ export class GenreDetailsComponent implements OnInit {
 
 
     this.filmService.getFilms().subscribe(films => {
-      console.log(films[0].genres.map(genre => genre.id));
       this.films = films.filter(film => film.genres.map(genre => '' + genre.id).indexOf('' + id) > -1);
-      console.log(this.films);
     });
   };
 

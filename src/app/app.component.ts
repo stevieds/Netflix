@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'ngx-localstorage';
 import { Router } from '@angular/router';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'Netflix';
+  user? : User;
 
   constructor(
     private localStorage: LocalStorageService,
@@ -17,8 +19,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let user = this.localStorage.get('loggedUser');
-    if (user !== null) {
+    this.user = this.localStorage.get('loggedUser');
+    if (this.user !== null) {
       this.router.navigate(['/dashboard']);
     } else {
       this.router.navigate(['/login']);

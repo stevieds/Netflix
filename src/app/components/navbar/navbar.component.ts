@@ -17,7 +17,9 @@ import { LoginComponent } from '../login/login.component';
 export class NavbarComponent implements OnInit {
 
 
-  constructor(public userService: UserService,
+  constructor(
+    public userService: UserService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class NavbarComponent implements OnInit {
 
   logout() {
 		this.userService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

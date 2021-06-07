@@ -28,11 +28,25 @@ export class UserService {
       return this.http.post<User | null>(this.loginUrl, {username: username, password: password, rememberMe: rememberMe}, this.httpOptions).pipe(tap(response => {
                 
         this.loggedUser = response;
+        this.loggedUser!.id = parseInt(response!.id!.toString());
+
 
         if (response!.favorite_films) {
           this.loggedUser!.favorite_films=response!.favorite_films.toString().split(",").map(x=> parseInt(x)).filter(x => Number.isInteger(x));
         } else {
             this.loggedUser!.favorite_films = [];
+        }
+
+        if (response!.favorite_actors) {
+          this.loggedUser!.favorite_actors=response!.favorite_actors.toString().split(",").map(x=> parseInt(x)).filter(x => Number.isInteger(x));
+        } else {
+            this.loggedUser!.favorite_actors = [];
+        }
+
+        if (response!.favorite_genres) {
+          this.loggedUser!.favorite_genres=response!.favorite_genres.toString().split(",").map(x=> parseInt(x)).filter(x => Number.isInteger(x));
+        } else {
+            this.loggedUser!.favorite_genres = [];
         }
         
       console.log('login', response);
@@ -68,7 +82,7 @@ export class UserService {
           'Authorization': this.loggedUser ? this.loggedUser.token : ''
         })
       }).pipe(tap(response => {
-        console.log(response);
+        alert("Utente modificato correttamente");
         this.loggedUser! = response;
         this.localStorage.set('loggedUser', response);
       }),
@@ -98,7 +112,32 @@ export class UserService {
           'Authorization': this.loggedUser ? this.loggedUser.token : ''
         })
       }).pipe(tap(response => {
-        console.log(response);
+        alert(response.message);
+      }),
+      catchError(error => {alert(error.error);
+      return of(null);
+    })
+      )
+      
+      ;
+    }
+
+
+    editFavActors(actorId: number, check: boolean ):Observable<any> {
+      if (check) {
+        this.loggedUser!.favorite_actors.push(actorId);
+      } else {
+        this.loggedUser!.favorite_actors.splice(actorId);
+      }
+      let favourites = {"ids": this.loggedUser!.favorite_actors.toString()};
+
+      return this.http.post<any>('https://netflix.cristiancarrino.com/user/favorite-actors.php', favourites, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': this.loggedUser ? this.loggedUser.token : ''
+        })
+      }).pipe(tap(response => {
+       alert(response.message);
       }),
       catchError(error => {alert(error.error);
       return of(null);

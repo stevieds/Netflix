@@ -27,6 +27,7 @@ export class FilmDetailsComponent implements OnInit {
   favourites: number[] = [];
   @Output() fav = new EventEmitter<number>();
 
+
   constructor(
     private route: ActivatedRoute,
     private filmService: FilmService,
@@ -74,17 +75,7 @@ export class FilmDetailsComponent implements OnInit {
 
 toggleFav() {
   this.favourite = !this.favourite;
-  this.userService.editFavFilms(this.film!.id, this.favourite).subscribe(response => {
-    if (response !== null) {
-      console.log(response);
-  
-  
-        }
-  
-  
-  });
-  
-
+  this.userService.editFavFilms(this.film!.id, this.favourite).subscribe();
 }
 
 

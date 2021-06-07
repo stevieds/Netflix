@@ -22,21 +22,33 @@ export class FilmService {
   }
 
   addFilm (film: Film) {
-    return this.http.post<Film>('https://netflix.cristiancarrino.com/film/create.php', film, {
+    return this.http.post<any>('https://netflix.cristiancarrino.com/film/create.php', film, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
-    });
+    }).pipe(tap(response => {
+      if (response.success && response.success == true) {
+        alert(response.message);
+      }
+    }),
+    catchError(error => {alert(error.error);
+    return of(null);
+  })
+    );
   }
 
-  editFilm (film: Film):Observable<Film | null> {
-    return this.http.post<Film>('https://netflix.cristiancarrino.com/film/update.php', film, {
+  editFilm (film: Film):Observable<any> {
+    return this.http.post<any>('https://netflix.cristiancarrino.com/film/update.php', film, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
-    }).pipe(tap(),
+    }).pipe(tap(response => {
+      if (response.success && response.success == true) {
+        alert(response.message);
+      }
+    }),
     catchError(error => {alert(error.error);
     return of(null);
   })

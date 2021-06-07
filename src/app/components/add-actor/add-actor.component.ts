@@ -33,7 +33,13 @@ export class AddActorComponent implements OnInit {
   }
 
   addActor() {
-    this.actorService.addActor(this.actor).subscribe(response => {console.log(response)});
+    let urlList="/actors/";
+    this.actorService.addActor(this.actor).subscribe(response => {
+      if (response.success && response.success==true) {
+        this.router.navigate([urlList]);
+      } 
+    }
+      );
   }
 
 

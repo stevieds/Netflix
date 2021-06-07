@@ -6,8 +6,8 @@ export interface User {
     lastname: string;
     birthdate: Date;
     favorite_films: number[];
-    favourite_actors: number[];
-    favourite_genres: number[];
+    favorite_actors: number[];
+    favorite_genres: number[];
     token: string;
     last_login: Date;
 

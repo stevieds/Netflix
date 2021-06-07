@@ -34,10 +34,8 @@ export class LoginComponent implements OnInit, CanActivate {
 
 	  checkLogin(url: string): true|UrlTree {
 		if (this.userService.loggedIn || this.userService.getLoggedUser() ) { 
-			console.log("true");
 			return true; }
 		else {     
-			console.log("false");
 			return this.router.createUrlTree(['/login']);
 	}
 

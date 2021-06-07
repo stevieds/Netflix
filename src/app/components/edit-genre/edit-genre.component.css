@@ -1,0 +1,13 @@
+form {
+    background-color: white;
+    margin: 0 auto;
+    padding: 25px;
+    width: 70%;
+    border-radius: 15px;
+}
+
+.title {
+    color:#dc3545;
+    text-align: center;
+    border-top:none;
+}

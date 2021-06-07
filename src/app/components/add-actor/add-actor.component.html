@@ -16,5 +16,8 @@
         <input type="date" class="form-control" name="birthdate" value ="{{actor.birthdate}}"[(ngModel)]="actor.birthdate">
       </div>
 
-    <button type="submit" class="btn btn-primary" (click)="addActor()">Submit</button>
+      <div class="buttons">
+        <button type="submit" class="btn btn-danger button-first" (click) = "addActor()">Invia</button>
+        <button type="reset" class="btn btn-light" >Pulisci</button>
+      </div>
   </form>

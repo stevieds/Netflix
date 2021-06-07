@@ -8,6 +8,7 @@ import { Film } from '../../models/film';
 import { Genre } from '../../models/genre';
 import { Actor } from '../../models/actor';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-genre',
@@ -23,7 +24,8 @@ export class EditGenreComponent implements OnInit {
     private genreService: GenreService,
     private location: Location,
     private actorService: ActorService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +39,12 @@ export class EditGenreComponent implements OnInit {
 }
 
 editGenre () {
-  this.genreService.editGenre(this.genre!).subscribe(response => {console.log(response)});
+  let url="/genred/" + this.genre!.id;
+  this.genreService.editGenre(this.genre!).subscribe(response => {
+    if (response && response.success && response.success==true) {
+      this.router.navigate([url]);    
+      }
+  });
 }
 
 }

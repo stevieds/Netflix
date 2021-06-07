@@ -15,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ActorListComponent implements OnInit {
   actors: Actor[] = [];
-  // Unica proprietà del componente che verrà poi popolata tramite la funzione apposita getActor
+  alphabet: string[] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "z"]
 
   constructor(
     private localStorage: LocalStorageService,
@@ -33,7 +33,12 @@ export class ActorListComponent implements OnInit {
 
 
   getActors():void{
-    this.actorService.getActors().subscribe(actors => this.actors = actors);
+    this.actorService.getActors().subscribe(actors => 
+      {this.actors = actors;
+      this.actors.sort((a, b) => a.lastname < b.lastname ? -1 : 1)
+    });
+    
   };
 
 }
+//arrayOfObjects.sort((a, b) => (a.propertyToSortBy < b.propertyToSortBy ? -1 : 1));
