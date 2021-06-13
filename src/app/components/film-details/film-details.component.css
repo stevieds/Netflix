@@ -52,10 +52,17 @@
 fa-icon {
     color: #dc3545;
     font-size: 50px;
+    cursor:pointer;
 }
 
 fa-icon:hover {
     color: white;
+}
+
+.spanDetails fa-icon {
+    color: white;
+    font-size: 15px;
+    cursor:default;
 }
 
 .tag {margin: 0px 1px 1px 1px;}

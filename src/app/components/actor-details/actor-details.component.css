@@ -32,10 +32,15 @@ th {
 }
 
 fa-icon {
-    color: grey;
+    color: #343a40;
     font-size: 50px;
+    cursor:pointer;
 }
 
 fa-icon:hover {
     color: white;
+}
+
+.grey {
+    color: #343a40;
 }

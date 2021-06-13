@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class GenreListComponent implements OnInit {
   genres: Genre[] = [];
+  alphabet: string[] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "z"]
 
   constructor(
     private localStorage: LocalStorageService,
@@ -28,7 +29,13 @@ export class GenreListComponent implements OnInit {
 
 
   getGenres():void{
-    this.genreService.getGenres().subscribe(genres => this.genres = genres);
+    this.genreService.getGenres().subscribe(genres =>
+      {
+        this.genres = genres;
+        this.genres.sort((a, b) => a.name < b.name ? -1 : 1)
+      }
+      
+      );
   };
 
 

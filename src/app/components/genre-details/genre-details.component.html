@@ -3,6 +3,8 @@
         <a routerLink="/edit-genre/{{genre.id}}">
         <fa-icon [icon]="faEdit"></fa-icon>
     </a>
+    <fa-icon [icon]="bin"  (click)="deleteGenre()"></fa-icon>
+    <fa-icon [icon]='this.favourite? this.fullHeart:emptyHeart' (click)="toggleFav()"></fa-icon>
     </h1>
     
 
@@ -16,6 +18,8 @@
             <a routerLink="/filmd/{{film.id}}">
             <div class="thumb-overlay">
               <div class="thumb-text">
+                <span class="title">{{film.title}}</span>
+              <br>
                 {{film.description}}
             </div>
           </div>

@@ -10,6 +10,8 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faSHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { UserService } from 'src/app/services/user.service';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -25,6 +27,8 @@ export class ActorDetailsComponent implements OnInit {
   emptyHeart = faHeart;
   fullHeart = faSHeart;
   films: Film[] = [];
+  bin = faTrashAlt;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -32,6 +36,7 @@ export class ActorDetailsComponent implements OnInit {
     private location: Location,
     private filmService: FilmService,
     private userService: UserService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +64,23 @@ export class ActorDetailsComponent implements OnInit {
   toggleFav() {
     this.favourite = !this.favourite;
     this.userService.editFavActors(this.actor!.id, this.favourite).subscribe();
+  }
+
+  deleteActor() {
+    let url="/actors";
+  
+    if(confirm('Eliminare questo attore dal database?') == true) {
+      this.actorService.deleteActor(this.actor!).subscribe(response => {
+        if (response && response.success==true) {
+          this.router.navigate([url]);    
+          }
+    
+    
+    });
+  
+    }
+  
+  
   }
 
 }

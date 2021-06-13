@@ -1,9 +1,19 @@
 <div class="container">
-  <div class="row row-cols-3">
-    <div *ngFor="let genre of genres" class="col listC">
-      <a routerLink="/genred/{{genre.id}}">
-      {{genre.name}}</a>
-    </div>
+  <div class="row row-cols-3 listA">
+
+    <dl *ngFor="let letter of alphabet">
+      <dt class="lettreTitle">{{letter | uppercase}}</dt>
+        <ng-container *ngFor="let genre of genres">
+          <dd *ngIf='genre.name[0].includes(letter.toUpperCase()) '>
+            <a  routerLink="/genred/{{genre.id}}">{{genre.name}}</a>
+          </dd>
+        </ng-container>
+        </dl>
+
+
+
+
+
     </div>
   </div>
 

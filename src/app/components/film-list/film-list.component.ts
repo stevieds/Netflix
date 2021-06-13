@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class FilmListComponent implements OnInit {
   films: Film[] = [];
+  shortPlot: String = "";
 
 
 

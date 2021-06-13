@@ -53,8 +53,28 @@ export class GenreService {
     catchError(error => {alert(error.error);
     return of(null);
   })
-    );;
+    );
   }
+
+  deleteGenre (genre: Genre):Observable<any> {
+    return this.http.post<any>('https://netflix.cristiancarrino.com/genre/delete.php', genre, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
+      })
+    }).pipe(tap(response => {
+      if (response && response.success == true) {
+        alert(response.message);
+      }
+    }),
+    catchError(error => {alert(error.error);
+    return of(null);
+  })
+    )
+    
+    ;
+  }
+
 
 
   }

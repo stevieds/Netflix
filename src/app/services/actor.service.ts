@@ -66,4 +66,23 @@ export class ActorService {
     );;
   }
 
+  deleteActor (actor: Actor):Observable<any> {
+    return this.http.post<any>('https://netflix.cristiancarrino.com/actor/delete.php', actor, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
+      })
+    }).pipe(tap(response => {
+      if (response && response.success == true) {
+        alert(response.message);
+      }
+    }),
+    catchError(error => {alert(error.error);
+    return of(null);
+  })
+    )
+    
+    ;
+  }
+
 }

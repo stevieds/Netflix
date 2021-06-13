@@ -147,6 +147,30 @@ export class UserService {
       ;
     }
 
+    editFavGenres(genreId: number, check: boolean ):Observable<any> {
+      if (check) {
+        this.loggedUser!.favorite_genres.push(genreId);
+      } else {
+        this.loggedUser!.favorite_genres.splice(genreId);
+      }
+      let favourites = {"ids": this.loggedUser!.favorite_genres.toString()};
+
+      return this.http.post<any>('https://netflix.cristiancarrino.com/user/favorite-genres.php', favourites, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': this.loggedUser ? this.loggedUser.token : ''
+        })
+      }).pipe(tap(response => {
+       alert(response.message);
+      }),
+      catchError(error => {alert(error.error);
+      return of(null);
+    })
+      )
+      
+      ;
+    }
+
 
     getFav(): number[] {
       return this.loggedUser!.favorite_films;

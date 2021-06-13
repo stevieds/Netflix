@@ -2,12 +2,11 @@
   <div class="row row-cols-4 listA">
 
       <dl *ngFor="let letter of alphabet">
-        <dt>{{letter | uppercase}}</dt>
+        <dt class="lettreTitle">{{letter | uppercase}}</dt>
           <ng-container *ngFor="let actor of actors">
             <dd *ngIf='actor.lastname[0].includes(letter.toUpperCase()) '>
               <a  routerLink="/actord/{{actor.id}}">{{actor.firstname}} {{actor.lastname}}</a>
             </dd>
-            
           </ng-container>
           </dl>
 

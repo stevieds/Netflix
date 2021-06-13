@@ -41,4 +41,4 @@ export class ActorListComponent implements OnInit {
   };
 
 }
-//arrayOfObjects.sort((a, b) => (a.propertyToSortBy < b.propertyToSortBy ? -1 : 1));
+

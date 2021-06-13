@@ -1,44 +1,53 @@
 <div class="d-flex justify-content-around" *ngIf="user">
     <div class="fav">
-      Preferiti
-        <div *ngIf="user.favorite_films">
-          Film
-          
-         <p *ngFor="let film of films">
-           {{film.title}}
-          <a routerLink="/filmd/{{film.id}}">
-           <fa-icon [icon]="faEye"></fa-icon>
-           </a> 
-           <fa-icon [icon]="faMinus" (click)="editFavFilm(film)"></fa-icon>
-           
-          </p>
-        
-        </div>
-        
-        <div *ngIf="user.favorite_genres">
-          Generi
-        </div>
-        <p *ngFor="let genre of genres">{{genre}}
-          <a routerLink="/genred/{{genre.id}}">
+      <h1>Preferiti</h1>
+      <table>
+        <thead *ngIf="user.favorite_films"> <tr><th>Film</th></tr> </thead>
+        <tbody *ngIf="user.favorite_films">
+        <tr *ngFor="let film of films">
+          <td>{{film.title}}</td>
+          <td>          <a routerLink="/filmd/{{film.id}}">
             <fa-icon [icon]="faEye"></fa-icon>
-            </a> 
-            <fa-icon [icon]="faMinus" (click)="editFavGenre(genre)"></fa-icon>
-        </p>
-        <div *ngIf="user.favorite_actors">Attori</div>
-        <p *ngFor="let actor of actors">{{actor.firstname}} {{actor.lastname}}
-          <a routerLink="/actord/{{actor.id}}">
-            <fa-icon [icon]="faEye"></fa-icon>
-            </a> 
-            <fa-icon [icon]="faMinus" (click)="editFavActor(actor)"></fa-icon>
-        </p>
+            </a> </td>
+          <td><fa-icon [icon]="faMinus" (click)="editFavFilm(film)"></fa-icon></td>
+        </tr>
+      </tbody>
 
-    </div>
+      <thead *ngIf="user.favorite_actors"> <tr><th>Attori</th></tr> </thead>
+      <tbody *ngIf="user.favorite_actors">
+      <tr *ngFor="let actor of actors">
+        <td>{{actor.firstname}} {{actor.lastname}}</td>
+        <td>          <a routerLink="/actord/{{actor.id}}">
+          <fa-icon [icon]="faEye"></fa-icon>
+          </a> </td>
+        <td><fa-icon [icon]="faMinus" (click)="editFavActor(actor)"></fa-icon></td>
+      </tr>
+    </tbody>
+
+    <thead *ngIf="user.favorite_genres"> <tr><th>Generi</th></tr> </thead>
+    <tbody *ngIf="user.favorite_genres">
+    <tr *ngFor="let genre of genres">
+      <td>{{genre.name}}</td>
+      <td>          <a routerLink="/genred/{{genre.id}}">
+        <fa-icon [icon]="faEye"></fa-icon>
+        </a> </td>
+      <td><fa-icon [icon]="faMinus" (click)="editFavGenre(genre)"></fa-icon></td>
+    </tr>
+  </tbody>
+
+      </table>
+
+
+
+        </div>
+        
+     
     
     <div>
 
       <h1>Modifica
         <a routerLink="/modify-user">
-          <fa-icon [icon]="faEdit"></fa-icon>
+          <fa-icon class="iconTitle" [icon]="faEdit"></fa-icon>
       </a>
   
   

@@ -1,3 +1,22 @@
 .fav {
     color: white;
 }
+
+h1 {
+    color: #343a40;
+}
+
+fa-icon {
+    font-size: 25px;
+    color: fa-icon;
+    cursor: pointer;
+    color: #343a40;
+}
+
+fa-icon:hover {
+    color: white;
+}
+
+.iconTitle {
+    font-size: 40px;
+}

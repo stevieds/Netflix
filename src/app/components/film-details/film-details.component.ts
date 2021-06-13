@@ -9,6 +9,13 @@ import { faHeart as faSHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { UserService } from 'src/app/services/user.service';
 import { MessagesService } from 'src/app/services/messages.service';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faStar2 } from '@fortawesome/free-regular-svg-icons';
+import { faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
+
+
 
 
 
@@ -26,6 +33,14 @@ export class FilmDetailsComponent implements OnInit {
   favourite: boolean = false;
   favourites: number[] = [];
   @Output() fav = new EventEmitter<number>();
+  fullStarIcon = faStar;
+  emptyStarIcon = faStar2;
+  halfStarIcon = faStarHalfAlt;
+  fullStar: number = 0;
+  emptyStar: number = 0;
+  halfStar: number = 0;
+  bin = faTrashAlt;
+
 
 
   constructor(
@@ -34,11 +49,13 @@ export class FilmDetailsComponent implements OnInit {
     private location: Location,
     private userService: UserService,
     private messagesService: MessagesService,
+    private router: Router,
 
   ) { }
 
   ngOnInit(): void {
     this.getFilm();
+    
   }
 
 
@@ -53,6 +70,14 @@ export class FilmDetailsComponent implements OnInit {
     // Filtro il film con il metodo find
     this.filmService.getFilms().subscribe(films => {
       this.film = films.find(x => x.id == id);
+      console.log(this.film);
+      this.film!.stars = this.film!.vote;
+
+      if (this.film!.stars % 0.5 == 0) {
+        this.halfStar = 1;
+      }
+      this.emptyStar = Math.ceil(5-this.film!.stars) - this.halfStar;
+      this.fullStar = Math.ceil(this.film!.stars) - this.halfStar;
 
       if (this.favourites.find(x => x==this.film!.id) == this.film!.id) {
         this.favourite = true;
@@ -62,6 +87,7 @@ export class FilmDetailsComponent implements OnInit {
       this.tags = this.film!.tags.split("; ")
     }
     });
+    
 
     // Popolo tags
     
@@ -76,6 +102,23 @@ export class FilmDetailsComponent implements OnInit {
 toggleFav() {
   this.favourite = !this.favourite;
   this.userService.editFavFilms(this.film!.id, this.favourite).subscribe();
+}
+
+deleteFilm() {
+  let url="/films";
+
+  if(confirm('Eliminare "'+ this.film!.title +'" dal database?') == true) {
+    this.filmService.deleteFilm(this.film!).subscribe(response => {
+      if (response && response.success==true) {
+        this.router.navigate([url]);    
+        }
+  
+  
+  });
+
+  }
+
+
 }
 
 
