@@ -45,6 +45,7 @@ export class UserDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFavourites();
+    console.log(this.user!);
   }
 
   getUserDetails (): void {
@@ -78,15 +79,24 @@ export class UserDetailsComponent implements OnInit {
   }
 
   editFavFilm(film: Film) {
-    this.userService.editFavFilms(film.id, false).subscribe(response => alert(response.message));
+    let url="/user-details";
+    this.userService.editFavFilms(film.id, false).subscribe(response => {
+      if (response !== null) {
+
+
+        
+    
+    
+          }
+    });
   }
 
   editFavActor(actor: Actor) {
-    this.userService.editFavFilms(actor.id, false).subscribe(response => alert(response.message));
+    this.userService.editFavActors(actor.id, false).subscribe(response => alert(response.message));
   }
 
   editFavGenre(genre: Genre) {
-    this.userService.editFavFilms(genre.id, false).subscribe(response => alert(response.message));
+    this.userService.editFavGenres(genre.id, false).subscribe(response => alert(response.message));
   }
 
 }

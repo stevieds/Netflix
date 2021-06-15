@@ -18,6 +18,7 @@ export class FilmService {
    }
 
    getFilms(): Observable<Film[]> {
+     let responses = this.http.get<Film[]>(this.filmsUrl);
     return this.http.get<Film[]>(this.filmsUrl);
   }
 

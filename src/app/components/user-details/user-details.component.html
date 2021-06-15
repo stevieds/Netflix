@@ -4,7 +4,7 @@
       <table>
         <thead *ngIf="user.favorite_films"> <tr><th>Film</th></tr> </thead>
         <tbody *ngIf="user.favorite_films">
-        <tr *ngFor="let film of films">
+        <tr #filmlist *ngFor="let film of films">
           <td>{{film.title}}</td>
           <td>          <a routerLink="/filmd/{{film.id}}">
             <fa-icon [icon]="faEye"></fa-icon>

@@ -25,8 +25,24 @@ export class UserService {
     }
  
     login (username: string, password: string, rememberMe:boolean): Observable<User | null> {
-      return this.http.post<User | null>(this.loginUrl, {username: username, password: password, rememberMe: rememberMe}, this.httpOptions).pipe(tap(response => {
-                
+      return this.http.post<any>(this.loginUrl, {username: username, password: password, rememberMe: rememberMe}, this.httpOptions).pipe(tap(response => {
+
+        this.loggedUser! = {
+          id : parseInt(response.id),
+          username : response.username,
+          password : response.password,
+          firstname : response.firstname,
+          lastname : response.lastname,
+          birthdate : response.birthdate,
+          favorite_films : response.favorite_films.split(",").map((x: string)=> parseInt(x)),
+          favorite_actors : response.favorite_actors.split(",").map((x: string)=> parseInt(x)),
+          favorite_genres : response.favorite_genres.split(",").map((x: string)=> parseInt(x)),
+          token : response.token,
+          last_login : response.last_login
+        }
+
+        
+        /*
         this.loggedUser = response;
         this.loggedUser!.id = parseInt(response!.id!.toString());
 
@@ -49,14 +65,15 @@ export class UserService {
             this.loggedUser!.favorite_genres = [];
         }
         
-      console.log('login', response);
+      console.log('login', response); */
+      console.log(this.loggedUser);
 
       this.loggedIn = true;
         if (rememberMe) {
-        this.localStorage.set('loggedUser', response);
+        this.localStorage.set('loggedUser', this.loggedUser);
       }
       }),
-      catchError(error => {console.log(error);
+      catchError(error => {alert(error);
       this.logout();
       return of(null);
     })
@@ -102,7 +119,8 @@ export class UserService {
       if (check) {
         this.loggedUser!.favorite_films.push(filmId);
       } else {
-        this.loggedUser!.favorite_films.splice(filmId);
+        this.loggedUser!.favorite_films.splice(this.loggedUser!.favorite_films.indexOf(filmId));
+
       }
       let favourites = {"ids": this.loggedUser!.favorite_films.toString()};
 
@@ -127,7 +145,7 @@ export class UserService {
       if (check) {
         this.loggedUser!.favorite_actors.push(actorId);
       } else {
-        this.loggedUser!.favorite_actors.splice(actorId);
+        this.loggedUser!.favorite_actors.splice(this.loggedUser!.favorite_actors.indexOf(actorId));
       }
       let favourites = {"ids": this.loggedUser!.favorite_actors.toString()};
 
@@ -151,7 +169,8 @@ export class UserService {
       if (check) {
         this.loggedUser!.favorite_genres.push(genreId);
       } else {
-        this.loggedUser!.favorite_genres.splice(genreId);
+        this.loggedUser!.favorite_genres.splice(this.loggedUser!.favorite_genres.indexOf(genreId));
+
       }
       let favourites = {"ids": this.loggedUser!.favorite_genres.toString()};
 
