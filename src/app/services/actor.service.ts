@@ -39,8 +39,9 @@ export class ActorService {
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
     }).pipe(tap(response => {
-      if (response.success && response.success == true) {
+      if (response && response.success == true) {
         alert(response.message);
+         
       }
     }),
     catchError(error => {alert(error.error);
@@ -56,7 +57,7 @@ export class ActorService {
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
     }).pipe(tap(response => {
-      if (response.success && response.success == true) {
+      if (response && response.success == true) {
         alert(response.message);
       }
     }),

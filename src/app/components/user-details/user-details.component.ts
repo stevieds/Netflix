@@ -80,20 +80,21 @@ export class UserDetailsComponent implements OnInit {
 
   editFavFilm(film: Film) {
     let url="/user-details";
-    this.userService.editFavFilms(film.id, false).subscribe(response => this.redirectTo("/user-details"));
+    this.userService.editFavFilms(film.id, false).subscribe(response => this.redirectTo());
   }
 
-  redirectTo(uri:string){
+
+  redirectTo(){
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
-    this.router.navigate([uri]));
+    this.router.navigate([this.router.url]));
  }
 
   editFavActor(actor: Actor) {
-    this.userService.editFavActors(actor.id, false).subscribe(response => this.redirectTo("/user-details"));
+    this.userService.editFavActors(actor.id, false).subscribe(response => this.redirectTo());
   }
 
   editFavGenre(genre: Genre) {
-    this.userService.editFavGenres(genre.id, false).subscribe(response => this.redirectTo("/user-details"));
+    this.userService.editFavGenres(genre.id, false).subscribe(response => this.redirectTo());
   }
 
 }

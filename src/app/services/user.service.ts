@@ -41,33 +41,6 @@ export class UserService {
           last_login : response.last_login
         }
 
-        
-        /*
-        this.loggedUser = response;
-        this.loggedUser!.id = parseInt(response!.id!.toString());
-
-
-        if (response!.favorite_films) {
-          this.loggedUser!.favorite_films=response!.favorite_films.toString().split(",").map(x=> parseInt(x)).filter(x => Number.isInteger(x));
-        } else {
-            this.loggedUser!.favorite_films = [];
-        }
-
-        if (response!.favorite_actors) {
-          this.loggedUser!.favorite_actors=response!.favorite_actors.toString().split(",").map(x=> parseInt(x)).filter(x => Number.isInteger(x));
-        } else {
-            this.loggedUser!.favorite_actors = [];
-        }
-
-        if (response!.favorite_genres) {
-          this.loggedUser!.favorite_genres=response!.favorite_genres.toString().split(",").map(x=> parseInt(x)).filter(x => Number.isInteger(x));
-        } else {
-            this.loggedUser!.favorite_genres = [];
-        }
-        
-      console.log('login', response); */
-
-
       this.loggedIn = true;
         if (rememberMe) {
         this.localStorage.set('loggedUser', this.loggedUser);

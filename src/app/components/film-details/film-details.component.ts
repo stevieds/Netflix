@@ -72,23 +72,23 @@ export class FilmDetailsComponent implements OnInit {
       this.film = films.find(x => x.id == id);
       this.film!.stars = this.film!.vote;
 
-      if (this.film!.stars % 0.5 == 0) {
+      if (!Number.isInteger(this.film!.stars)) {
         this.halfStar = 1;
       }
-      this.emptyStar = Math.ceil(5-this.film!.stars) - this.halfStar;
-      this.fullStar = Math.ceil(this.film!.stars) - this.halfStar;
+      this.emptyStar = Math.floor(5-this.film!.stars) - this.halfStar;
+      this.fullStar = Math.floor(this.film!.stars);
 
       if (this.favourites.find(x => x==this.film!.id) == this.film!.id) {
         this.favourite = true;
       };
 
       if (this.film!.tags) {
-      this.tags = this.film!.tags.split("; ")
+      this.tags = this.film!.tags.split("; ");
     }
     });
     
 
-    // Popolo tags
+  
     
 }
 

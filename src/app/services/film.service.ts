@@ -18,8 +18,14 @@ export class FilmService {
    }
 
    getFilms(): Observable<Film[]> {
-     let responses = this.http.get<Film[]>(this.filmsUrl);
-    return this.http.get<Film[]>(this.filmsUrl);
+     let responses = this.http.get<any[]>(this.filmsUrl).pipe(tap(response => {
+       response.forEach(f => {
+         f.id = parseInt(f.id);
+         f.created_by = parseInt(f.created_by);
+         f.vote = parseFloat(f.vote);
+       })
+     }));
+      return responses;
   }
 
   addFilm (film: Film) {
@@ -29,7 +35,7 @@ export class FilmService {
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
     }).pipe(tap(response => {
-      if (response.success && response.success == true) {
+      if (response && response.success == true) {
         alert(response.message);
       }
     }),
@@ -46,7 +52,7 @@ export class FilmService {
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
     }).pipe(tap(response => {
-      if (response.success && response.success == true) {
+      if (response && response.success == true) {
         alert(response.message);
       }
     }),

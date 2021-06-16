@@ -33,7 +33,7 @@ export class AddGenreComponent implements OnInit {
   addGenre() {
     let urlList="/genres/";
     this.genreService.addGenre(this.genre).subscribe(response => {
-      if (response.success && response.success==true) {
+      if (response && response.success==true) {
         this.router.navigate([urlList]);
       } 
     });

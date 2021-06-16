@@ -35,7 +35,7 @@ export class AddActorComponent implements OnInit {
   addActor() {
     let urlList="/actors/";
     this.actorService.addActor(this.actor).subscribe(response => {
-      if (response.success && response.success==true) {
+      if (response && response.success==true) {
         this.router.navigate([urlList]);
       } 
     }

@@ -41,7 +41,7 @@ export class EditGenreComponent implements OnInit {
 editGenre () {
   let url="/genred/" + this.genre!.id;
   this.genreService.editGenre(this.genre!).subscribe(response => {
-    if (response && response.success && response.success==true) {
+    if (response && response.success==true) {
       this.router.navigate([url]);    
       }
   });

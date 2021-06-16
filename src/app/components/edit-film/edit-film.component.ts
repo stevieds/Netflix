@@ -60,12 +60,22 @@ export class EditFilmComponent implements OnInit {
     );
   }
 
-  getGenres(): void {
-    this.genreService.getGenres().subscribe(genres => this.genres = genres);
-  }
+  getGenres():void{
+    this.genreService.getGenres().subscribe(genres =>
+      {
+        this.genres = genres;
+        this.genres.sort((a, b) => a.name < b.name ? -1 : 1)
+      }
+      
+      );
+  };
+
 
   getActors(): void {
-    this.actorService.getActors().subscribe(actors => this.actors = actors);
+    this.actorService.getActors().subscribe(actors => {
+      this.actors = actors;
+      this.actors.sort((a, b) => a.lastname < b.lastname ? -1 : 1);
+    });
   }
 
   
@@ -79,7 +89,7 @@ export class EditFilmComponent implements OnInit {
     this.film!.genres=this.genres.filter(x => x.selected);
     
     this.filmService.editFilm(this.film!).subscribe(response => {
-        if (response.success && response.success==true) {
+        if (response && response.success==true) {
           this.router.navigate([url]);    
           }
     

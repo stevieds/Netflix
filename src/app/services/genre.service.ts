@@ -17,9 +17,17 @@ export class GenreService {
     private userService: UserService) { 
    }
 
+
+
    getGenres(): Observable<Genre[]> {
-    return this.http.get<Genre[]>(this.genresUrl);
-   }
+    let responses = this.http.get<any[]>(this.genresUrl).pipe(tap(response => {
+      response.forEach(f => {
+        f.id = parseInt(f.id);
+        f.created_by = parseInt(f.created_by);
+      })
+    }));
+     return responses;
+ }
 
 
    addGenre(genre: Genre) {
@@ -29,7 +37,7 @@ export class GenreService {
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
     }).pipe(tap(response => {
-      if (response.success && response.success == true) {
+      if (response && response.success == true) {
         alert(response.message);
       }
     }),
@@ -46,7 +54,7 @@ export class GenreService {
         'Authorization': this.userService.loggedUser ? this.userService.loggedUser.token : ''
       })
     }).pipe(tap(response => {
-      if (response && response.success && response.success == true) {
+      if (response && response.success == true) {
         alert(response.message);
       }
     }),

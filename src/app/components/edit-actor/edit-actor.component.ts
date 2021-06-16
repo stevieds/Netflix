@@ -44,7 +44,7 @@ editActor () {
 
   
   this.actorService.editActor(this.actor!).subscribe(response => {
-    if (response && response.success && response.success==true) {
+    if (response && response.success==true) {
       this.router.navigate([url]);    
       }
   });
