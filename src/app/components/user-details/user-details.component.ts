@@ -44,8 +44,8 @@ export class UserDetailsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.getUserDetails();
     this.getFavourites();
-    console.log(this.user!);
   }
 
   getUserDetails (): void {
@@ -80,23 +80,20 @@ export class UserDetailsComponent implements OnInit {
 
   editFavFilm(film: Film) {
     let url="/user-details";
-    this.userService.editFavFilms(film.id, false).subscribe(response => {
-      if (response !== null) {
-
-
-        
-    
-    
-          }
-    });
+    this.userService.editFavFilms(film.id, false).subscribe(response => this.redirectTo("/user-details"));
   }
 
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri]));
+ }
+
   editFavActor(actor: Actor) {
-    this.userService.editFavActors(actor.id, false).subscribe(response => alert(response.message));
+    this.userService.editFavActors(actor.id, false).subscribe(response => this.redirectTo("/user-details"));
   }
 
   editFavGenre(genre: Genre) {
-    this.userService.editFavGenres(genre.id, false).subscribe(response => alert(response.message));
+    this.userService.editFavGenres(genre.id, false).subscribe(response => this.redirectTo("/user-details"));
   }
 
 }

@@ -70,7 +70,6 @@ export class FilmDetailsComponent implements OnInit {
     // Filtro il film con il metodo find
     this.filmService.getFilms().subscribe(films => {
       this.film = films.find(x => x.id == id);
-      console.log(this.film);
       this.film!.stars = this.film!.vote;
 
       if (this.film!.stars % 0.5 == 0) {

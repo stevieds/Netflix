@@ -66,14 +66,14 @@ export class UserService {
         }
         
       console.log('login', response); */
-      console.log(this.loggedUser);
+
 
       this.loggedIn = true;
         if (rememberMe) {
         this.localStorage.set('loggedUser', this.loggedUser);
       }
       }),
-      catchError(error => {alert(error);
+      catchError(error => {alert(error.error);
       this.logout();
       return of(null);
     })
